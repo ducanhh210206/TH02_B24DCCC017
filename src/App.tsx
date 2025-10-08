@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import CountryApp from "./components/CountryApp";
+import CountryDetail from "./components/CountryApp/CountryDetail";
+import CurrencyApp from "./components/CurrencyApp";
+import MovieApp from "./components/MovieApp";
+import MovieDetail from "./components/MovieApp/MovieDetail";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav style={{ display: "flex", gap: 10, marginBottom: 20 }}>
+        <Link to="/">Bài 1: Quốc gia</Link>
+        <Link to="/currency">Bài 2: Tỉ giá</Link>
+        <Link to="/movies">Bài 3: Phim</Link>
+      </nav>
+
+      <Routes>
+        {/* Bài 1 */}
+        <Route path="/" element={<CountryApp />} />
+        <Route path="/country/:name" element={<CountryDetail />} />
+
+        {/* Bài 2 */}
+        <Route path="/currency" element={<CurrencyApp />} />
+
+        {/* Bài 3 */}
+        <Route path="/movies" element={<MovieApp />} />
+        <Route path="/movie/:imdbID" element={<MovieDetail />} />
+      </Routes>
+    </Router>
   );
 }
 
